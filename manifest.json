@@ -17,6 +17,12 @@
       "js": ["src/content.js"]
     }
   ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/sidebar.html", "src/sidebar.css", "src/sidebar.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "action": {
     "default_popup": "src/popup.html",
     "default_title": "AI_explan"
