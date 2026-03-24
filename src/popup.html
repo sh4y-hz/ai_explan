@@ -10,12 +10,212 @@
   <div class="container">
     <h2>AI_explan</h2>
 
-    <div class="status-section">
-      <label class="switch">
-        <input type="checkbox" id="toggle-switch">
-        <span class="slider"></span>
-      </label>
-      <span id="status-text">Extension Active</span>
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="general">General</button>
+      <button class="tab-btn" data-tab="api">API</button>
+      <button class="tab-btn" data-tab="context">Context</button>
+      <button class="tab-btn" data-tab="appearance">Appearance</button>
+      <button class="tab-btn" data-tab="advanced">Advanced</button>
+    </div>
+
+    <!-- General Settings Tab -->
+    <div class="tab-content active" id="general-tab">
+      <div class="status-section">
+        <label class="switch">
+          <input type="checkbox" id="toggle-switch">
+          <span class="slider"></span>
+        </label>
+        <span id="status-text">Extension Active</span>
+      </div>
+
+      <div class="config-section">
+        <h3>Panel Settings</h3>
+        <div class="config-item">
+          <label for="panel-width">Panel Width: <span id="panel-width-value">400px</span></label>
+          <input type="range" id="panel-width" min="300" max="600" value="400">
+        </div>
+      </div>
+    </div>
+
+    <!-- API Settings Tab -->
+    <div class="tab-content" id="api-tab">
+      <div class="config-section">
+        <h3>AI Service Settings</h3>
+        <div class="config-item">
+          <label for="preferred-api">Preferred API:</label>
+          <select id="preferred-api">
+            <option value="qwen">Qwen (Alibaba Cloud)</option>
+            <option value="kimi">Kimi (Moonshot AI)</option>
+            <option value="openai">OpenAI</option>
+            <option value="anthropic">Anthropic (Claude)</option>
+            <option value="automatic">Automatic (Use Available)</option>
+          </select>
+        </div>
+
+        <!-- Qwen API Settings -->
+        <div class="api-provider-section" id="qwen-api-section">
+          <h4>Qwen Settings</h4>
+          <div class="config-item">
+            <label for="qwen-api-key">Qwen API Key:</label>
+            <input type="password" id="qwen-api-key" placeholder="Enter Qwen API key">
+          </div>
+          <div class="config-item">
+            <label for="qwen-base-url">Base URL:</label>
+            <input type="text" id="qwen-base-url" value="https://dashscope.aliyuncs.com/compatible-mode/v1">
+          </div>
+          <div class="config-item">
+            <label for="qwen-model">Model:</label>
+            <input type="text" id="qwen-model" value="qwen-max" placeholder="Enter model name">
+          </div>
+        </div>
+
+        <!-- Kimi API Settings -->
+        <div class="api-provider-section" id="kimi-api-section">
+          <h4>Kimi Settings</h4>
+          <div class="config-item">
+            <label for="kimi-api-key">Kimi API Key:</label>
+            <input type="password" id="kimi-api-key" placeholder="Enter Kimi API key">
+          </div>
+          <div class="config-item">
+            <label for="kimi-base-url">Base URL:</label>
+            <input type="text" id="kimi-base-url" value="https://api.moonshot.cn/v1">
+          </div>
+          <div class="config-item">
+            <label for="kimi-model">Model:</label>
+            <input type="text" id="kimi-model" value="moonshot-v1-8k" placeholder="Enter model name">
+          </div>
+        </div>
+
+        <!-- OpenAI API Settings -->
+        <div class="api-provider-section" id="openai-api-section">
+          <h4>OpenAI Settings</h4>
+          <div class="config-item">
+            <label for="openai-api-key">OpenAI API Key:</label>
+            <input type="password" id="openai-api-key" placeholder="Enter OpenAI API key">
+          </div>
+          <div class="config-item">
+            <label for="openai-base-url">Base URL:</label>
+            <input type="text" id="openai-base-url" value="https://api.openai.com/v1">
+          </div>
+          <div class="config-item">
+            <label for="openai-model">Model:</label>
+            <input type="text" id="openai-model" value="gpt-4o" placeholder="Enter model name">
+          </div>
+        </div>
+
+        <!-- Anthropic API Settings -->
+        <div class="api-provider-section" id="anthropic-api-section">
+          <h4>Anthropic (Claude) Settings</h4>
+          <div class="config-item">
+            <label for="anthropic-api-key">Anthropic API Key:</label>
+            <input type="password" id="anthropic-api-key" placeholder="Enter Anthropic API key">
+          </div>
+          <div class="config-item">
+            <label for="anthropic-base-url">Base URL:</label>
+            <input type="text" id="anthropic-base-url" value="https://api.anthropic.com/v1">
+          </div>
+          <div class="config-item">
+            <label for="anthropic-model">Model:</label>
+            <input type="text" id="anthropic-model" value="claude-3-5-sonnet-20241022" placeholder="Enter model name">
+          </div>
+        </div>
+
+        <div class="config-item checkbox-item">
+          <label for="api-failover">
+            <input type="checkbox" id="api-failover">
+            Enable API Failover (try alternate service if primary fails)
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Context Settings Tab -->
+    <div class="tab-content" id="context-tab">
+      <div class="config-section">
+        <h3>Context Settings</h3>
+        <div class="config-item">
+          <label for="context-length">Context Length: <span id="context-length-value">3</span> paragraphs</label>
+          <input type="range" id="context-length" min="1" max="10" value="3">
+        </div>
+        <div class="config-item checkbox-item">
+          <label for="include-headers">
+            <input type="checkbox" id="include-headers">
+            Include Headers in Context
+          </label>
+        </div>
+        <div class="config-item checkbox-item">
+          <label for="include-code-blocks">
+            <input type="checkbox" id="include-code-blocks">
+            Include Code Blocks in Context
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appearance Settings Tab -->
+    <div class="tab-content" id="appearance-tab">
+      <div class="config-section">
+        <h3>Appearance Settings</h3>
+        <div class="config-item">
+          <label for="theme-select">Theme:</label>
+          <select id="theme-select">
+            <option value="system">System Default</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div class="config-item">
+          <label for="font-size">Font Size:</label>
+          <select id="font-size">
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+        <div class="config-item">
+          <label for="panel-opacity">Panel Opacity: <span id="panel-opacity-value">100%</span></label>
+          <input type="range" id="panel-opacity" min="20" max="100" value="100">
+        </div>
+        <div class="config-item checkbox-item">
+          <label for="show-animations">
+            <input type="checkbox" id="show-animations">
+            Show Animations
+          </label>
+        </div>
+        <div class="config-item">
+          <label for="animation-speed">Animation Speed:</label>
+          <select id="animation-speed">
+            <option value="slow">Slow</option>
+            <option value="normal" selected>Normal</option>
+            <option value="fast">Fast</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced Settings Tab -->
+    <div class="tab-content" id="advanced-tab">
+      <div class="config-section">
+        <h3>Advanced Settings</h3>
+        <div class="config-item checkbox-item">
+          <label for="enable-logging">
+            <input type="checkbox" id="enable-logging">
+            Enable Debug Logging
+          </label>
+        </div>
+        <div class="config-item checkbox-item">
+          <label for="send-anonymous-usage">
+            <input type="checkbox" id="send-anonymous-usage">
+            Send Anonymous Usage Data
+          </label>
+        </div>
+        <div class="config-buttons">
+          <button id="export-settings" class="btn-secondary">Export Settings</button>
+          <button id="import-settings" class="btn-secondary">Import Settings</button>
+          <button id="restore-defaults" class="btn-danger">Restore Defaults</button>
+        </div>
+      </div>
     </div>
 
     <div class="info-section">
@@ -27,6 +227,7 @@
     </div>
   </div>
 
+  <script src="settings-manager.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
